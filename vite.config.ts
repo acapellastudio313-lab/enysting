@@ -16,12 +16,16 @@ export default defineConfig(({mode}) => {
       },
     },
     server: {
-      // Perbaikan untuk Replit: Mengizinkan semua host agar tidak diblokir
+      // Mengizinkan semua host agar Replit tidak memblokir koneksi
       allowedHosts: true, 
-      host: true,
+      host: '0.0.0.0',
       port: 3000,
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      hmr: process.env.DISABLE_HMR !== 'true',
+      strictPort: true,
+      cors: true,
+      // Mengatur HMR agar tidak bentrok dengan protokol proxy Replit
+      hmr: {
+        clientPort: 443, // Memaksa HMR menggunakan port HTTPS standar
+      },
     },
   };
 });
