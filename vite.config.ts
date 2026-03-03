@@ -16,16 +16,13 @@ export default defineConfig(({mode}) => {
       },
     },
     server: {
-      // Mengizinkan semua host di Replit
-      allowedHosts: true,
+      // Mengizinkan semua host agar Replit tidak memblokir koneksi
+      allowedHosts: true, 
       host: '0.0.0.0',
       port: 3000,
       strictPort: true,
-      // PENTING: Memaksa HMR menggunakan WebSocket Secure (WSS)
-      hmr: {
-        protocol: 'wss',
-        clientPort: 443,
-      },
+      // Mematikan auto-refresh agar koneksi tidak diputus Replit (Solusi Upgrade Required)
+      hmr: false,
     },
   };
 });
